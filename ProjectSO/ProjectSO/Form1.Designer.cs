@@ -52,6 +52,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.mostrar_btn = new System.Windows.Forms.Button();
             this.mostrar_lb = new System.Windows.Forms.Label();
+            this.conectados_dgv = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.conectados_dgv)).BeginInit();
             this.SuspendLayout();
             // 
             // Conectar_but
@@ -267,11 +269,22 @@
             this.mostrar_lb.Size = new System.Drawing.Size(0, 25);
             this.mostrar_lb.TabIndex = 23;
             // 
+            // conectados_dgv
+            // 
+            this.conectados_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.conectados_dgv.Location = new System.Drawing.Point(1425, 108);
+            this.conectados_dgv.Name = "conectados_dgv";
+            this.conectados_dgv.RowHeadersWidth = 82;
+            this.conectados_dgv.RowTemplate.Height = 33;
+            this.conectados_dgv.Size = new System.Drawing.Size(373, 290);
+            this.conectados_dgv.TabIndex = 24;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1927, 834);
+            this.Controls.Add(this.conectados_dgv);
             this.Controls.Add(this.mostrar_lb);
             this.Controls.Add(this.mostrar_btn);
             this.Controls.Add(this.mail_tb);
@@ -299,6 +312,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.conectados_dgv)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -330,6 +344,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button mostrar_btn;
         private System.Windows.Forms.Label mostrar_lb;
+        private System.Windows.Forms.DataGridView conectados_dgv;
     }
 }
 

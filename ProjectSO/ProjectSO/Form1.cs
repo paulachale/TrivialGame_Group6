@@ -166,20 +166,23 @@ namespace ProjectSO
             byte[] msg2 = new byte[80];
             server.Receive(msg2);
             mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-            if (mensaje == "NO")
+            if (mensaje == "0")
             {
                 mostrar_lb.Text="No hay usuarios conectados";
             }
             else 
             {
-                mostrar_lb.Text = String.Empty;
+                
                 string[] conectados = mensaje.Split('/');
-                string label="";
-                foreach (var conectado in conectados)
+                conectados_dgv.RowCount = Convert.ToInt32(conectados[0]);
+                conectados_dgv.ColumnCount = 1;
+                conectados_dgv.Columns[0].HeaderText = "Nombre";
+                int i = 0;
+                while (i < conectados_dgv.Rows.Count)
                 {
-                    label= $"{label}"+conectado + "\n";
+                    conectados_dgv.Rows[i].Cells[0].Value = conectados[i + 1];
+                    i++;
                 }
-                mostrar_lb.Text = label;
 
             }
         }
