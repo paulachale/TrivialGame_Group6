@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <mysql.h>
 #include <pthread.h>
-
+#include <my_global.h>
 
 typedef struct{
 	char nombre[20];
@@ -20,7 +20,8 @@ typedef struct{
 }ListaConectados;
 MYSQL *conn;
 ListaConectados miLista;
-
+int i;
+int sockets[100];
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 int Pon(ListaConectados *lista,char nombre[20],int socket){
@@ -73,10 +74,10 @@ int Eliminar(ListaConectados *lista, char nombre[20]){
 	}
 }
 void DameConectados(ListaConectados *lista, char conectados[300]){
-	sprintf(conectados, "%d",lista->num);
+	sprintf(conectados, "%s%d/",conectados,lista->num);
 	int i;
 	for(i=0;i<lista->num;i++){
-		sprintf(conectados,"%s/%s",conectados,lista->conectados[i].nombre);
+		sprintf(conectados,"%s%s/",conectados,lista->conectados[i].nombre);
 	}
 }
 void abrirbd(){
@@ -87,7 +88,7 @@ void abrirbd(){
 		exit (1);
 	}
 //inicializar la conexin
-	conn = mysql_real_connect (conn, "localhost","root", "mysql", "Trivial",0, NULL, 0);
+	conn = mysql_real_connect (conn, "shiva2.upc.es","root", "mysql", "T6_Trivial",0, NULL, 0);
 
 	if (conn==NULL) {
 		printf ("Error al inicializar la conexion: %u %s\n", 
@@ -218,9 +219,11 @@ void consultafecha (char fecha[6], char respuesta[100]){
 	resultado = mysql_store_result (conn);	
 	row = mysql_fetch_row (resultado);	
 	if (row == NULL)
-		sprintf (respuesta, "No se han encontrado usuarios que jugaran en esta fecha.");
+		sprintf (respuesta, "3/No se han encontrado usuarios que jugaran en esta fecha.");
 	else{
-		strcpy(respuesta, row[0]);
+		
+		strcpy(respuesta, "3/");
+		sprintf(respuesta, "%s%s",respuesta, row[0]);
 		row = mysql_fetch_row (resultado);	
 		while (row !=NULL){
 			sprintf(respuesta, "%s, %s", respuesta, row[0]);
@@ -242,7 +245,9 @@ void consultamail(char respuesta[100]){
 	}
 	resultado = mysql_store_result (conn);
 	row = mysql_fetch_row (resultado);
-	strcpy(respuesta, row[0]);
+	
+	strcpy(respuesta, "4/");
+	sprintf(respuesta, "%s%s",respuesta, row[0]);
 	
 	//sprintf(respuesta, "%s %s", respuesta, "\n");
 	printf ("Respuesta: %s\n", respuesta);
@@ -264,9 +269,10 @@ void consultapuntos(char puntos[4], char respuesta[100]){
 	resultado = mysql_store_result (conn);
 	row = mysql_fetch_row (resultado);
 	if (row==NULL)
-		sprintf (respuesta, "Nadie ha ganado con más de %s puntos",puntos);
+		sprintf (respuesta, "5/Nadie ha ganado con más de %s puntos",puntos);
 	else{
-		strcpy(respuesta,row[0]);
+		strcpy(respuesta, "5/");
+		sprintf(respuesta, "%s%s",respuesta, row[0]);
 		row = mysql_fetch_row (resultado);
 		while (row != NULL){
 			sprintf(respuesta, "%s, %s", respuesta, row[0]);
@@ -308,6 +314,16 @@ void *AtenderCliente(void *socket){
 			pthread_mutex_lock( &mutex );
 			int res=Eliminar(&miLista, usuario);
 			pthread_mutex_unlock( &mutex );
+			//Notificar los clientes conectados
+			char notificacion1[100];
+			strcpy(notificacion1, "6/");
+			DameConectados(&miLista,notificacion1);
+			printf ("Notificación: %s\n", notificacion1);
+			//Enviamos respuesta
+			int j;
+			for (j=0; j<i; j++)
+				write (sockets[j],notificacion1, strlen(notificacion1));
+			
 			if (res==-1){
 				printf("No eliminado de la lista correctamente");
 			}
@@ -330,11 +346,11 @@ void *AtenderCliente(void *socket){
 			int res=log_in(usuario, contrasena);
 			char respuesta1[100];
 			if (res==0){
-				strcpy(respuesta1, "NO");
+				strcpy(respuesta1, "1/NO");
 				
 			}
 			else if (res==1){
-				strcpy(respuesta1, "SI");
+				strcpy(respuesta1, "1/SI");
 			}
 			printf ("Respuesta: %s\n", respuesta1);
 			
@@ -343,6 +359,15 @@ void *AtenderCliente(void *socket){
 
 				int res1=Pon(&miLista, usuario,sock_conn);
 				pthread_mutex_unlock( &mutex );
+				//Notificar los clientes conectados
+				char notificacion[100];
+				strcpy(notificacion, "6/");
+				DameConectados(&miLista,notificacion);
+				printf ("Notificación: %s\n", notificacion);
+				//Enviamos respuesta
+				int j;
+				for (j=0; j<i; j++)
+					write (sockets[j],notificacion, strlen(notificacion));
 				if(res1==0)
 					printf("Añadido correctamente");
 				else if(res1==-1)
@@ -368,10 +393,10 @@ void *AtenderCliente(void *socket){
 			strcpy (mail, p);
 			int res=registro(usuario1, contrasena1,mail);
 			if (res==0){
-				strcpy(respuesta2, "NO");
+				strcpy(respuesta2, "2/NO");
 			}
 			else if (res==1){
-				strcpy(respuesta2,"SI");
+				strcpy(respuesta2,"2/SI");
 			}
 			//sprintf(respuesta, "%s %s", respuesta, "\n");
 			printf ("Respuesta: %s\n", respuesta2);
@@ -417,14 +442,14 @@ void *AtenderCliente(void *socket){
 			write (sock_conn,respuesta5, strlen(respuesta5));
 		}
 		
-		if (codigo==6){
-			int i=0;
-			char respuesta6[100];
-			DameConectados(&miLista,respuesta6);
-			printf ("Respuesta: %s\n", respuesta6);
+/*		if (codigo==6){*/
+/*			int i=0;*/
+/*			char respuesta6[100];*/
+/*			DameConectados(&miLista,respuesta6);*/
+/*			printf ("Respuesta: %s\n", respuesta6);*/
 			// Enviamos respuesta
-			write (sock_conn,respuesta6, strlen(respuesta6));
-		}
+/*			write (sock_conn,respuesta6, strlen(respuesta6));*/
+/*		}*/
 		
 			
 	
@@ -443,6 +468,7 @@ int main(int argc, char **argv)
 		abrirbd();
 		
 		int sock_conn, sock_listen;
+		int puerto=50069;
 		miLista.num=0;
 		
 		struct sockaddr_in serv_adr;
@@ -459,14 +485,13 @@ int main(int argc, char **argv)
 		//htonl formatea el numero que recibe al formato necesario
 		serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
 		// establecemos el puerto de escucha
-		serv_adr.sin_port = htons(9200);
+		serv_adr.sin_port = htons(puerto);
 		if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
 			printf ("Error al bind");
 		if (listen(sock_listen, 3) < 0)
 			printf("Error en el Listen");
 		
-		int i;
-		int sockets[100];
+		
 		pthread_t thread[100];
 		// Bucle infinito
 		for (i=0;i<100;i++){

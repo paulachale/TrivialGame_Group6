@@ -50,7 +50,6 @@
             this.Mail_lb = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.mostrar_btn = new System.Windows.Forms.Button();
             this.mostrar_lb = new System.Windows.Forms.Label();
             this.conectados_dgv = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.conectados_dgv)).BeginInit();
@@ -251,16 +250,6 @@
             this.label3.TabIndex = 16;
             this.label3.Text = "Nombre de usuario:";
             // 
-            // mostrar_btn
-            // 
-            this.mostrar_btn.Location = new System.Drawing.Point(1109, 106);
-            this.mostrar_btn.Name = "mostrar_btn";
-            this.mostrar_btn.Size = new System.Drawing.Size(190, 83);
-            this.mostrar_btn.TabIndex = 22;
-            this.mostrar_btn.Text = "Mostrar conectados";
-            this.mostrar_btn.UseVisualStyleBackColor = true;
-            this.mostrar_btn.Click += new System.EventHandler(this.mostrar_btn_Click);
-            // 
             // mostrar_lb
             // 
             this.mostrar_lb.AutoSize = true;
@@ -286,7 +275,6 @@
             this.ClientSize = new System.Drawing.Size(1927, 834);
             this.Controls.Add(this.conectados_dgv);
             this.Controls.Add(this.mostrar_lb);
-            this.Controls.Add(this.mostrar_btn);
             this.Controls.Add(this.mail_tb);
             this.Controls.Add(this.contra1_tb);
             this.Controls.Add(this.usuario1_tb);
@@ -342,7 +330,6 @@
         private System.Windows.Forms.Label Mail_lb;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button mostrar_btn;
         private System.Windows.Forms.Label mostrar_lb;
         private System.Windows.Forms.DataGridView conectados_dgv;
     }
