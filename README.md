@@ -8,7 +8,7 @@ Quoridor
 - Generada por Paula C
 - Verificada por Paula S
 - Comunicada por Júlia
-3. Versión 3: Entprno de producción
+3. Versión 3: Entorno de producción
 - Generada por Paula S
 - Verificada por Júlia
 - Comunicada por Paula C
