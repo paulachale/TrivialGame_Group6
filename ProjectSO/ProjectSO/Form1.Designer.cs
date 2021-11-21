@@ -52,6 +52,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.mostrar_lb = new System.Windows.Forms.Label();
             this.conectados_dgv = new System.Windows.Forms.DataGridView();
+            this.invitar_bt = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.conectados_dgv)).BeginInit();
             this.SuspendLayout();
             // 
@@ -261,18 +262,30 @@
             // conectados_dgv
             // 
             this.conectados_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.conectados_dgv.Location = new System.Drawing.Point(1425, 108);
+            this.conectados_dgv.Location = new System.Drawing.Point(1146, 59);
             this.conectados_dgv.Name = "conectados_dgv";
             this.conectados_dgv.RowHeadersWidth = 82;
             this.conectados_dgv.RowTemplate.Height = 33;
             this.conectados_dgv.Size = new System.Drawing.Size(373, 290);
             this.conectados_dgv.TabIndex = 24;
+            this.conectados_dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.conectados_dgv_CellClick);
+            // 
+            // invitar_bt
+            // 
+            this.invitar_bt.Location = new System.Drawing.Point(1244, 364);
+            this.invitar_bt.Name = "invitar_bt";
+            this.invitar_bt.Size = new System.Drawing.Size(171, 67);
+            this.invitar_bt.TabIndex = 25;
+            this.invitar_bt.Text = "Invitar";
+            this.invitar_bt.UseVisualStyleBackColor = true;
+            this.invitar_bt.Click += new System.EventHandler(this.invitar_bt_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1927, 834);
+            this.Controls.Add(this.invitar_bt);
             this.Controls.Add(this.conectados_dgv);
             this.Controls.Add(this.mostrar_lb);
             this.Controls.Add(this.mail_tb);
@@ -332,6 +345,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label mostrar_lb;
         private System.Windows.Forms.DataGridView conectados_dgv;
+        private System.Windows.Forms.Button invitar_bt;
     }
 }
 

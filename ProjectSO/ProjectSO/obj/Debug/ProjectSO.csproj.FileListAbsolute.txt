@@ -40,3 +40,14 @@ C:\Users\julia\OneDrive\Escriptori\v2_1011_perv3\TrivialGame_Group6\ProjectSO\Pr
 C:\Users\julia\OneDrive\Escriptori\v2_1011_perv3\TrivialGame_Group6\ProjectSO\ProjectSO\obj\Debug\ProjectSO.csproj.CoreCompileInputs.cache
 C:\Users\julia\OneDrive\Escriptori\v2_1011_perv3\TrivialGame_Group6\ProjectSO\ProjectSO\obj\Debug\ProjectSO.exe
 C:\Users\julia\OneDrive\Escriptori\v2_1011_perv3\TrivialGame_Group6\ProjectSO\ProjectSO\obj\Debug\ProjectSO.pdb
+C:\Users\julia\OneDrive\Escriptori\v3_para_v4\TrivialGame_Group6\ProjectSO\ProjectSO\bin\Debug\ProjectSO.exe.config
+C:\Users\julia\OneDrive\Escriptori\v3_para_v4\TrivialGame_Group6\ProjectSO\ProjectSO\bin\Debug\ProjectSO.exe
+C:\Users\julia\OneDrive\Escriptori\v3_para_v4\TrivialGame_Group6\ProjectSO\ProjectSO\bin\Debug\ProjectSO.pdb
+C:\Users\julia\OneDrive\Escriptori\v3_para_v4\TrivialGame_Group6\ProjectSO\ProjectSO\obj\Debug\ProjectSO.csprojAssemblyReference.cache
+C:\Users\julia\OneDrive\Escriptori\v3_para_v4\TrivialGame_Group6\ProjectSO\ProjectSO\obj\Debug\ProjectSO.Form1.resources
+C:\Users\julia\OneDrive\Escriptori\v3_para_v4\TrivialGame_Group6\ProjectSO\ProjectSO\obj\Debug\ProjectSO.form_invitacion.resources
+C:\Users\julia\OneDrive\Escriptori\v3_para_v4\TrivialGame_Group6\ProjectSO\ProjectSO\obj\Debug\ProjectSO.Properties.Resources.resources
+C:\Users\julia\OneDrive\Escriptori\v3_para_v4\TrivialGame_Group6\ProjectSO\ProjectSO\obj\Debug\ProjectSO.csproj.GenerateResource.cache
+C:\Users\julia\OneDrive\Escriptori\v3_para_v4\TrivialGame_Group6\ProjectSO\ProjectSO\obj\Debug\ProjectSO.csproj.CoreCompileInputs.cache
+C:\Users\julia\OneDrive\Escriptori\v3_para_v4\TrivialGame_Group6\ProjectSO\ProjectSO\obj\Debug\ProjectSO.exe
+C:\Users\julia\OneDrive\Escriptori\v3_para_v4\TrivialGame_Group6\ProjectSO\ProjectSO\obj\Debug\ProjectSO.pdb

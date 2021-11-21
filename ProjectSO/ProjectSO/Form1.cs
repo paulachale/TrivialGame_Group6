@@ -16,6 +16,7 @@ namespace ProjectSO
     {
         Socket server;
         Thread atender;
+        string miUsuario;
         public Form1()
         {
             InitializeComponent();
@@ -44,6 +45,7 @@ namespace ProjectSO
                         if (mensaje == "SI")
                         {
                             MessageBox.Show("¡Ha iniciado sesión correctamente!");
+                            
                         }
                         else if (mensaje=="NO")
                         {
@@ -83,22 +85,59 @@ namespace ProjectSO
                         }
                         else
                         {
-                            
-                            
-                            conectados_dgv.RowCount = Convert.ToInt32(trozos[1]);
-                            conectados_dgv.ColumnCount = 1;
-                            conectados_dgv.Columns[0].HeaderText = "Nombre";
-                            int i = 1;
-                            while (i <= conectados_dgv.Rows.Count)
+                            if (Convert.ToInt32(trozos[1]) != 1)
                             {
-                                conectados_dgv.Rows[i-1].Cells[0].Value = trozos[i+1];
-                              
-                                i++;
-                            }
 
+                                conectados_dgv.RowCount = Convert.ToInt32(trozos[1]) - 1;
+                                conectados_dgv.ColumnCount = 1;
+                                conectados_dgv.Columns[0].HeaderText = "Nombre";
+                                int i = 1;//posicion en trozos
+                                int m = 1;//posicion en data grid
+                                while (i <= Convert.ToInt32(trozos[1]))
+                                {
+                                    if (trozos[i + 1] != this.miUsuario)
+                                    {
+                                        conectados_dgv.Rows[m - 1].Cells[0].Value = trozos[i + 1];
+                                        m++;
+                                    }
+
+                                    i++;
+                                }
+                            }
+                        }
+                        break;
+                    case 8:
+                        form_invitacion form1 = new form_invitacion();
+                        string nombre = trozos[1];
+                        form1.SetInvitador(nombre);
+                        form1.ShowDialog();
+                        int aceptar = form1.GetAceptar();
+                        string respuesta;
+                        if (aceptar == 0){
+                            respuesta = "9/NO/" + trozos[2];
+                        }
+                        else 
+                        {
+                            respuesta = "9/SI/" + trozos[2];
+                        }
+                        byte[] msg = System.Text.Encoding.ASCII.GetBytes(respuesta);
+                        server.Send(msg);
+                        break;
+                    case 10:
+                        if (trozos[1] == "SI")
+                        {
+                            MessageBox.Show("Todos los usuarios han aceptado. ¡Empieza la partida!");
+                            //se abre el form tablero
+                            Tablero form = new Tablero();
+                            form.ShowDialog();
+                        }
+                        if(trozos[1] == "NO")
+                        {
+                            MessageBox.Show("No todos los usuarios han aceptado. Para crear una nueva partida, invita a nuevos usuarios.");
                         }
                         break;
                 }
+
         }
         }
         private void Conectar_but_Click(object sender, EventArgs e)
@@ -107,7 +146,9 @@ namespace ProjectSO
             //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
             //al que deseamos conectarnos
             IPAddress direc = IPAddress.Parse("147.83.117.22");
+            //IPAddress direc = IPAddress.Parse("192.168.56.102");
             IPEndPoint ipep = new IPEndPoint(direc, 50069);
+            //IPEndPoint ipep = new IPEndPoint(direc, 9050);
             //Creamos el socket 
             server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             try
@@ -197,6 +238,7 @@ namespace ProjectSO
 
         private void inicio_but_Click(object sender, EventArgs e)
         {
+            this.miUsuario = usuario_tb.Text; //Guardamos nuestro nombre de usuario
             string mensaje = "1/" + usuario_tb.Text + "/" + contra_tb.Text;
             // Enviamos al servidor la información del registro
             byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
@@ -204,6 +246,40 @@ namespace ProjectSO
 
         }
 
-      
+        private void conectados_dgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (conectados_dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor == Color.White)
+            {
+                conectados_dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Red;
+            }
+            else
+            {
+                conectados_dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.White;
+            }
+           
+        }
+
+        private void invitar_bt_Click(object sender, EventArgs e)
+        {
+            int i = 0;
+            int contador = 0;
+            string mensaje = "7/"+miUsuario;
+            while (i < conectados_dgv.RowCount)
+            {
+                if ((conectados_dgv.Rows[i].Cells[0].Style.BackColor == Color.Red)&&( conectados_dgv.Rows[i].Cells[0].Value != miUsuario))
+                {
+                    mensaje = mensaje +"/"+ conectados_dgv.Rows[i].Cells[0].Value;
+                    contador++;
+                }
+                i = i + 1;
+            }
+            if (contador != 0)
+            {
+                byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                server.Send(msg);
+            }
+        }
+
+        
     }
 }

@@ -20,6 +20,15 @@ typedef struct{
 }ListaConectados;
 MYSQL *conn;
 ListaConectados miLista;
+typedef struct{
+	int libre;
+	char usuarios[50];
+	int numero; //número de personas invitadas
+	int aceptada; // cambia a 0 si alguien rechazado
+	int contador; //personas que han contestado
+}Partida;
+typedef Partida TablaPartidas[100];
+TablaPartidas partidas;
 int i;
 int sockets[100];
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
@@ -89,6 +98,7 @@ void abrirbd(){
 	}
 //inicializar la conexin
 	conn = mysql_real_connect (conn, "shiva2.upc.es","root", "mysql", "T6_Trivial",0, NULL, 0);
+	//conn = mysql_real_connect (conn, "localhost","root", "mysql", "Trivial",0, NULL, 0);
 
 	if (conn==NULL) {
 		printf ("Error al inicializar la conexion: %u %s\n", 
@@ -97,6 +107,72 @@ void abrirbd(){
 	
 	}
 	
+}
+int DameSocket(ListaConectados *lista, char nombre[20]){
+	//Dado un nombre retorna la posicin si lo encuentra en la lista
+	//en caso contrario, devuelve -1
+	int i=0;
+	int encontrado=0;
+	while((i<lista->num) && !encontrado){
+		if (strcmp(lista->conectados[i].nombre, nombre)==0){
+			encontrado=1;
+		}
+		else{
+			i=i+1;
+		}
+	}
+	if (encontrado){
+		return lista->conectados[i].socket;
+	}
+	else{
+		return -1;
+	}
+}
+int PonPartida(TablaPartidas *partidas,ListaConectados *miLista,char invitados[50], char sockets[20] ){
+	int b=0;
+	printf("peticion:%s\n",invitados);
+	int posicion=-1;
+	int encontrado=0;
+	while ((b<100)&&(!encontrado)){
+		if(partidas[b]->libre==0){
+			encontrado=1;
+			printf("Encontrado un hueco libre en la tabla\n");
+			int numero=1;//el que crea la partida ya lo añadimos al número de participantes
+			posicion=b;
+			char usuarios[50];
+			partidas[posicion]->libre=1;
+			char *p;
+			p=strtok(invitados, "/"); //eliminamos el código 7
+			p=strtok(NULL,"/");
+			
+			strcpy(usuarios, p);
+			printf("usuarios:%s\n",usuarios);
+			
+			
+			p=strtok(NULL, "/");
+			strcpy(sockets,"");
+			while(p!=NULL){
+				char s[20];
+				strcpy(s,p);
+				sprintf(usuarios, "%s/%s",usuarios,s);
+				char usuario[20];
+				numero=numero+1;
+				
+				
+				int socket=DameSocket(miLista, s);
+				sprintf(sockets,"%s%d/",sockets,socket);
+				p=strtok(NULL, "/");
+				
+			}
+			printf("Usuarios:%s\n",usuarios);
+			strcpy(partidas[posicion]->usuarios,usuarios);
+			partidas[posicion]->numero=numero;
+
+		}
+		b++;
+	}
+	printf("La posición en la tabla es %d\n",posicion);
+	return posicion;
 }
 
 
@@ -291,6 +367,8 @@ void *AtenderCliente(void *socket){
 	s=(int*) socket;
 	sock_conn=*s;
 	char peticion[512];
+	char peticion1[512];
+	
 	char respuesta[512];
 	int ret;
 	int terminar =0;
@@ -302,10 +380,13 @@ void *AtenderCliente(void *socket){
 		// Ahora recibimos la petici?n
 		ret=read(sock_conn,peticion, sizeof(peticion));
 		printf ("Recibido\n");
+		char miUsuario[20];
 		peticion[ret]='\0';
 		printf ("Peticion: %s\n",peticion);
+		strcpy(peticion1,peticion);
 		char *p = strtok( peticion, "/");
 		int codigo =  atoi (p);
+		printf("codigo:%d\n",codigo);
 		char usuario[20];
 		
 		// Ya tenemos el c?digo de la petici?n
@@ -351,12 +432,13 @@ void *AtenderCliente(void *socket){
 			}
 			else if (res==1){
 				strcpy(respuesta1, "1/SI");
+				strcpy(miUsuario,usuario);
 			}
 			printf ("Respuesta: %s\n", respuesta1);
 			
 			if (res==1){
 				pthread_mutex_lock( &mutex );
-
+				
 				int res1=Pon(&miLista, usuario,sock_conn);
 				pthread_mutex_unlock( &mutex );
 				//Notificar los clientes conectados
@@ -366,8 +448,8 @@ void *AtenderCliente(void *socket){
 				printf ("Notificación: %s\n", notificacion);
 				//Enviamos respuesta
 				int j;
-				for (j=0; j<i; j++)
-					write (sockets[j],notificacion, strlen(notificacion));
+				for (j=0; j<miLista.num; j++)
+					write (miLista.conectados[j].socket,notificacion, strlen(notificacion));
 				if(res1==0)
 					printf("Añadido correctamente");
 				else if(res1==-1)
@@ -441,18 +523,99 @@ void *AtenderCliente(void *socket){
 			// Enviamos respuesta
 			write (sock_conn,respuesta5, strlen(respuesta5));
 		}
-		
-/*		if (codigo==6){*/
-/*			int i=0;*/
-/*			char respuesta6[100];*/
-/*			DameConectados(&miLista,respuesta6);*/
-/*			printf ("Respuesta: %s\n", respuesta6);*/
-			// Enviamos respuesta
-/*			write (sock_conn,respuesta6, strlen(respuesta6));*/
-/*		}*/
-		
+		if (codigo==7){
+			printf("Ha entrado en codigo 7\n");
 			
-	
+			char sockets[20];
+			pthread_mutex_lock( &mutex );
+			int posicion=PonPartida(&partidas,&miLista,peticion1,sockets);
+			pthread_mutex_unlock( &mutex );
+			printf("posicion:%d\n",posicion);
+			if (posicion==-1){
+				printf("Tabla llena\n");
+			}
+			else{
+				char invitacion [50];
+				strcpy(invitacion, "8/");
+				
+				sprintf(invitacion,"%s%s/%d",invitacion,miUsuario,posicion);
+				printf("Invitación:%s\n",invitacion);
+				int c=0;
+				char *p;
+				p=strtok(sockets,"/");
+				printf("socket:%s\n",p);
+				while(p !=NULL){
+					printf("socket:%s\n",p);
+					write(atoi(p),invitacion,strlen(invitacion));
+					p=strtok(NULL,"/");
+				}
+
+			}
+		}
+		if (codigo==9){
+			char resp[5];
+			
+			p=strtok(NULL,"/");
+			strcpy(resp,p);
+			int respuesta;//almacenamos la respuesta 0-no, 1-si
+			if (strcmp(resp,"NO")==0){
+				respuesta=0;
+			}
+			else
+				respuesta=1;
+			p=strtok(NULL,"/");
+			int partida=atoi(p);
+			if (respuesta==0){
+				pthread_mutex_lock( &mutex );
+				partidas[partida].aceptada=0;
+				partidas[partida].contador=partidas[partida].contador+1;
+				printf("contador no:%d\n",partidas[partida].contador);
+				pthread_mutex_unlock( &mutex );
+			}
+			else{
+				pthread_mutex_lock( &mutex );
+				partidas[partida].contador=partidas[partida].contador+1;
+				printf("contador si:%d\n",partidas[partida].contador);
+				pthread_mutex_unlock( &mutex );
+				
+			}
+			printf("numero:%d\n",partidas[partida].numero);
+			if ((partidas[partida].numero==partidas[partida].contador+1)&&(partidas[partida].aceptada==1)){
+				char mensaje[50];//en este mensaje informaremos a todos los jugadores de que empieza la partida porque han aceptado
+				strcpy(mensaje,"10/SI/");
+				char m[20];
+				sprintf(mensaje,"%s%d",mensaje,partida);
+				p=strtok(partidas[partida].usuarios,"/");
+				while(p!=NULL){
+					strcpy(m,p);
+					int socket=DameSocket(&miLista,m);
+					write(socket,mensaje,strlen(mensaje));
+					p=strtok(NULL,"/");
+
+				}
+				
+
+			}
+			if((partidas[partida].numero==partidas[partida].contador+1)&&(partidas[partida].aceptada==0)){
+				char mensaje[50];//en este mensaje informaremos a todos los jugadores de que no empieza la partida porque no han aceptado
+				strcpy(mensaje,"10/NO/");
+				char m[20];
+				sprintf(mensaje,"%s%d",mensaje,partida);
+				p=strtok(partidas[partida].usuarios,"/");
+				while(p!=NULL){
+					strcpy(m,p);
+					int socket=DameSocket(&miLista,m);
+					write(socket,mensaje,strlen(mensaje));
+					p=strtok(NULL,"/");
+
+				}
+			}
+			
+
+
+
+		}
+			
 	 
 	}
 	close(sock_conn);
@@ -469,7 +632,15 @@ int main(int argc, char **argv)
 		
 		int sock_conn, sock_listen;
 		int puerto=50069;
+		//int puerto=9050;
 		miLista.num=0;
+		int a =0;
+		while (a<100) {
+			partidas[a].libre=0;
+			partidas[a].aceptada=1;
+			partidas[a].contador=0;
+			a++;
+		}
 		
 		struct sockaddr_in serv_adr;
 		
