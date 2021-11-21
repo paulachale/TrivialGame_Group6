@@ -12,3 +12,7 @@ Quoridor
 - Generada por Paula S
 - Verificada por Júlia
 - Comunicada por Paula C
+4. Versión 4: Invitaciones
+- Generada por Júlia  
+- Verificada por Paula C
+- Comunicada por Paula S
