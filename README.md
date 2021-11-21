@@ -15,5 +15,5 @@ Quoridor
 4. Versión 4: Invitaciones
 - Generada por Júlia  
 - Verificada por Paula C
-- Comunicada por Paula S
+- Comunicada por Paula S \n
 https://drive.google.com/file/d/1eMRPTPVn5EoQEFsjoJ3vvs-fXWJwAtWj/view?usp=sharing
