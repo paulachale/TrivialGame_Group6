@@ -16,3 +16,4 @@ Quoridor
 - Generada por Júlia  
 - Verificada por Paula C
 - Comunicada por Paula S
+https://drive.google.com/file/d/1eMRPTPVn5EoQEFsjoJ3vvs-fXWJwAtWj/view?usp=sharing
