@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <mysql.h>
 #include <pthread.h>
-#include <my_global.h>
+//#include <my_global.h>
 
 typedef struct{
 	char nombre[20];
@@ -97,8 +97,8 @@ void abrirbd(){
 		exit (1);
 	}
 //inicializar la conexin
-	conn = mysql_real_connect (conn, "shiva2.upc.es","root", "mysql", "T6_Trivial",0, NULL, 0);
-	//conn = mysql_real_connect (conn, "localhost","root", "mysql", "Trivial",0, NULL, 0);
+	//conn = mysql_real_connect (conn, "shiva2.upc.es","root", "mysql", "T6_Trivial",0, NULL, 0);
+	conn = mysql_real_connect (conn, "localhost","root", "mysql", "Trivial",0, NULL, 0);
 
 	if (conn==NULL) {
 		printf ("Error al inicializar la conexion: %u %s\n", 
@@ -389,8 +389,8 @@ void *AtenderCliente(void *socket){
 		printf("codigo:%d\n",codigo);
 		char usuario[20];
 		
-		// Ya tenemos el c?digo de la petici?n
-		if (codigo ==0) {//petici?n de desconexi?n
+		// Ya tenemos el codigo de la petici?n
+		if (codigo ==0) {//peticion de desconexi?n
 			terminar=1;
 			pthread_mutex_lock( &mutex );
 			int res=Eliminar(&miLista, usuario);
@@ -413,7 +413,7 @@ void *AtenderCliente(void *socket){
 			}
 			
 		}
-		//C\ufff3digo 1: petici\ufff3n de log in.
+		//Codigo 1: peticion de log in.
 		if (codigo ==1)
 		{
 			
@@ -584,15 +584,46 @@ void *AtenderCliente(void *socket){
 				char mensaje[50];//en este mensaje informaremos a todos los jugadores de que empieza la partida porque han aceptado
 				strcpy(mensaje,"10/SI/");
 				char m[20];
-				sprintf(mensaje,"%s%d",mensaje,partida);
-				p=strtok(partidas[partida].usuarios,"/");
+				char users1[100];
+				strcpy(users1,partidas[partida].usuarios);
+				char users2[100];
+				strcpy(users2,partidas[partida].usuarios);
+				
+				sprintf(mensaje,"%s%d/%s",mensaje,partida,users1);
+				p=strtok(users1,"/");
+				printf("p:%s\n",p);
+				char primerturno[20];
+				strcpy(primerturno,"11/");				
+				char primerjugador[20];				
+				strcpy(primerjugador,p);
+				sprintf(primerturno,"%s%s",primerturno,primerjugador);
+				
+				
 				while(p!=NULL){
 					strcpy(m,p);
 					int socket=DameSocket(&miLista,m);
+					
+					printf("socket;%d\n",socket);
 					write(socket,mensaje,strlen(mensaje));
+					printf("m10 enviado\n");
 					p=strtok(NULL,"/");
+					printf("p:%s\n",p);
 
 				}
+				printf("%s\n",partidas[partida].usuarios);
+				
+/*				char *t=strtok(users2,"/");*/
+/*				printf("t:%s\n",t);*/
+/*				while(t!=NULL){*/
+/*					strcpy(m,t);*/
+/*					int socket=DameSocket(&miLista,m);*/
+/*					printf("socket;%d\n",socket);*/
+/*					write(socket,primerturno,strlen(primerturno));*/
+/*					printf("m11 enviado\n");*/
+/*					t=strtok(NULL,"/");*/
+/*					printf("t:%s\n",t);*/
+					
+/*				}*/
 				
 
 			}
@@ -610,12 +641,64 @@ void *AtenderCliente(void *socket){
 
 				}
 			}
+		}
+		if (codigo==12){
 			
-
 
 
 		}
+		
+		if (codigo==13){//Recibimos el mensaje de que un usuario ha fallado, enviamos mensaje con el nuevo turno
 			
+			p=strtok(NULL, "/");
+			int partida=atoi(p);
+			char turno_anterior[20];
+			p=strtok(NULL, "/");
+			strcpy(turno_anterior,p);
+			char users1[100];
+			strcpy(users1,partidas[partida].usuarios);
+			char *u=strtok(users1,"/");
+			int encontrado=0;
+			int contador=0;
+			while(!encontrado){
+				char user[20];
+				strcpy(user,u);
+				if(strcmp(turno_anterior,user)==0){
+					encontrado=1;
+					
+				}
+				else{
+					u=strtok(NULL,"/");
+				}
+				contador++;
+			}
+			char turno[20];
+			if (contador==partidas[partida].numero){
+				char users2[100];
+				strcpy(users2,partidas[partida].usuarios);
+				char *v=strtok(users2,"/");
+				
+				strcpy(turno,v);
+			}
+			else{
+				u=strtok(NULL,"/");
+				strcpy(turno,u);
+			}
+			char mensaje[50];
+			sprintf(mensaje,"11/%s",turno);
+			char m[20];
+			printf("%s\n",mensaje);
+			strcpy(users1,partidas[partida].usuarios);
+			p=strtok(users1,"/");
+			while(p!=NULL){
+				strcpy(m,p);
+				int socket=DameSocket(&miLista,m);
+				write(socket,mensaje,strlen(mensaje));
+				p=strtok(NULL,"/");
+				
+				
+			}
+		}
 	 
 	}
 	close(sock_conn);
@@ -631,8 +714,8 @@ int main(int argc, char **argv)
 		abrirbd();
 		
 		int sock_conn, sock_listen;
-		int puerto=50069;
-		//int puerto=9050;
+		//int puerto=50069;
+		int puerto=9050;
 		miLista.num=0;
 		int a =0;
 		while (a<100) {

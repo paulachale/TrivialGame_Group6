@@ -17,15 +17,56 @@ namespace ProjectSO
         Socket server;
         Thread atender;
         string miUsuario;
+        int numPartida;
+        //public Tablero tablero;
+        public List<Tablero> formularios = new List<Tablero>();
+        Thread T;
+
+        delegate void DelegadoParaRellenarTabla(string [] mensaje);
+       
+
+
+
         public Form1()
         {
             InitializeComponent();
-            CheckForIllegalCrossThreadCalls = false;
+            //CheckForIllegalCrossThreadCalls = false;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
         }
+       
+        public void RellenaDataGridConectados(string[] trozos)
+        {
+            if (Convert.ToInt32(trozos[1]) != 1)
+            {
+
+                conectados_dgv.RowCount = Convert.ToInt32(trozos[1]) - 1;
+                conectados_dgv.ColumnCount = 1;
+                conectados_dgv.Columns[0].HeaderText = "Nombre";
+                int i = 1;//posicion en trozos
+                int m = 1;//posicion en data grid
+                while (i <= Convert.ToInt32(trozos[1]))
+                {
+                    if (trozos[i + 1] != this.miUsuario)
+                    {
+                        conectados_dgv.Rows[m - 1].Cells[0].Value = trozos[i + 1];
+                        m++;
+                    }
+
+                    i++;
+                }
+            }
+        }
+        public void PonerEnMarchaFormulario(string primerturno)
+        {
+            Tablero formulario = new Tablero(this.miUsuario, this.numPartida,this.server);
+            formularios.Add(formulario);
+            this.formularios[0].TomaTurno(primerturno);
+            formularios[0].ShowDialog();
+        }
+        
         private void AtenderServidor()
         {
             while (true)
@@ -34,7 +75,8 @@ namespace ProjectSO
                 byte[] msg2 = new byte[80];
                 server.Receive(msg2);
                 string [] trozos = Encoding.ASCII.GetString(msg2).Split('/');
-                int codigo = Convert.ToInt32(trozos[0]);
+                
+                int codigo = Convert.ToInt32(trozos[0].Split('\0')[0]);
                 
                 switch (codigo)
                 {
@@ -85,25 +127,11 @@ namespace ProjectSO
                         }
                         else
                         {
-                            if (Convert.ToInt32(trozos[1]) != 1)
-                            {
+                            DelegadoParaRellenarTabla delegado = new DelegadoParaRellenarTabla(RellenaDataGridConectados);
+                            conectados_dgv.Invoke(delegado, new object[] { trozos });
 
-                                conectados_dgv.RowCount = Convert.ToInt32(trozos[1]) - 1;
-                                conectados_dgv.ColumnCount = 1;
-                                conectados_dgv.Columns[0].HeaderText = "Nombre";
-                                int i = 1;//posicion en trozos
-                                int m = 1;//posicion en data grid
-                                while (i <= Convert.ToInt32(trozos[1]))
-                                {
-                                    if (trozos[i + 1] != this.miUsuario)
-                                    {
-                                        conectados_dgv.Rows[m - 1].Cells[0].Value = trozos[i + 1];
-                                        m++;
-                                    }
-
-                                    i++;
-                                }
-                            }
+                            
+               
                         }
                         break;
                     case 8:
@@ -128,14 +156,23 @@ namespace ProjectSO
                         {
                             MessageBox.Show("Todos los usuarios han aceptado. ¡Empieza la partida!");
                             //se abre el form tablero
-                            Tablero form = new Tablero();
-                            form.ShowDialog();
+                            this.numPartida = Convert.ToInt32(trozos[2]);
+                            ThreadStart ts = delegate { PonerEnMarchaFormulario(trozos[3]); };
+                            this.T = new Thread(ts);
+                            T.Start();
                         }
                         if(trozos[1] == "NO")
                         {
                             MessageBox.Show("No todos los usuarios han aceptado. Para crear una nueva partida, invita a nuevos usuarios.");
                         }
                         break;
+                    case 11://recibe un cambio de turno y se lo asigna a todos los jugadores
+                        string turno = trozos[1].Split('\0')[0];
+                        
+                        formularios[0].TomaTurno(turno);
+
+                        break;
+
                 }
 
         }
@@ -145,10 +182,10 @@ namespace ProjectSO
 
             //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
             //al que deseamos conectarnos
-            IPAddress direc = IPAddress.Parse("147.83.117.22");
-            //IPAddress direc = IPAddress.Parse("192.168.56.102");
-            IPEndPoint ipep = new IPEndPoint(direc, 50069);
-            //IPEndPoint ipep = new IPEndPoint(direc, 9050);
+            //IPAddress direc = IPAddress.Parse("147.83.117.22");
+            IPAddress direc = IPAddress.Parse("192.168.56.102");
+            //IPEndPoint ipep = new IPEndPoint(direc, 50069);
+            IPEndPoint ipep = new IPEndPoint(direc, 9050);
             //Creamos el socket 
             server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             try
@@ -279,6 +316,8 @@ namespace ProjectSO
                 server.Send(msg);
             }
         }
+
+        
 
         
     }
