@@ -17,3 +17,7 @@ Quoridor
 - Verificada por Paula C
 - Comunicada por Paula S
 - https://drive.google.com/file/d/15UhzyRVor5cn-Ln5MALnNl-CdlOCXwzh/view?usp=sharing
+5. Versión 5
+- Generada por Paula C
+- Verificada por Paula S
+- Comunicada por Júlia https://drive.google.com/file/d/16jLN7hRjoSZq9FgkvbwcMzizaWeZ25Ef/view?usp=sharing
