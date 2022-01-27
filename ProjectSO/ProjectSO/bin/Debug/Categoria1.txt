@@ -1,0 +1,7 @@
+¿Cuál fue el primer país en aprobar el sufragio femenino?,1.Nueva Zelanda,2.España,3.Italia,4.Suiza,1
+¿En qué año llegó el hombre a la Luna?, 1.1966, 2.1969, 3.1920,4.1970,2
+¿Qué importante batalla tuvo lugar en 1815?, 1.Batalla del Ebro, 2.Batalla de Trafalgar, 3.Batalla de Waterloo,4.Batalla de Bailén,3
+¿Cuál era la ciudad hogar de Marco Polo?, 1.Venecia, 2.Roma, 3.Florencia,4.Pisa,1
+¿En qué año tuvo lugar el genocidio de Ruanda?, 1.1994, 2.1995, 3.1990,4.1991,1
+¿En qué ciudad se entrevistaron Hitler y Franco?, 1.Madrid, 2.Berlín, 3.Hendaya,4.Barcelona,3
+¿Cuál era la ciudad hogar de Marco Polo?, 1.Venecia, 2.Roma, 3.Florencia,4.Pisa,1

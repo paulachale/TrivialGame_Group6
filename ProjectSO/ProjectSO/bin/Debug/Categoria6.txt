@@ -1,0 +1,7 @@
+¿Qué color no pertenece a los aros olímpicos?, 1.Rojo, 2.Amarillo, 3.Blanco,4.Negro,3
+¿En qué deporte destacó Carl Lewis?, 1.Atletismo, 2.Natación, 3.Fútbol,4.Tenis',1
+¿Dónde se inventó el ping-pong?, 1.China, 2.Japón, 3.España,4.Inglaterra,4
+¿Qué color no pertenece a los aros olímpicos?, 1.Rojo, 2.Amarillo, 3.Blanco,4.Negro,3
+¿Cuántos jugadores hay en un equipo de voleibol?, 1. 8, 2. 6, 3. 7, 4. 4,2
+¿En qué ciudad española está el estadio de fútbol de Mestalla?, 1.Sevilla, 2.Madrid, 3.Barcelona,4.Valencia,4
+¿Cuántos rounds hay en un combate de boxeo olímpico?, 1.Tres, 2.Cinco, 3.Uno,4.Cuatro,1

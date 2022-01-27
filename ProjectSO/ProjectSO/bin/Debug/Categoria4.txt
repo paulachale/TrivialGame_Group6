@@ -1,0 +1,7 @@
+¿En qué mes el Sol está más cerca de la Tierra?, 1.Enero, 2.Diciembre, 3.Mayo,4.Septiembre,2
+¿En qué lado del cuerpo está el hígado?, 1.Tenemos dos hígados, 2.Izquierdo, 3.Derecho,4.En el medio,3
+¿Cuántos elementos tiene la tabla periódica?', 1. 117, 2. 120, 3. 119,4. 118,4
+¿Qué gas de la atmósfera nos protege de la radiación ultravioleta?, 1.Nitrógeno, 2.Oxígeno, 3.Ozono,4.Gas agua,3
+¿Qué sentido es el que se desarrolla primero?, 1.Olfato, 2.Tacto ,3.Gusto,4.Oído,1
+¿Cuál es el único mes que puede tener menos de 4 fases lunares?, 1.Enero, 2.Febrero, 3.Marzo,4.Abril,2
+¿Qué edad tiene la Tierra (en millones de años)?, 1. 4543, 2. 5543, 3. 3543,4. 6543,1

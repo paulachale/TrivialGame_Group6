@@ -1,0 +1,7 @@
+¿Cuál fue la primera película de Disney?, 1.Blancanieves, 2.Cenicienta, 3.Mickey Mouse:La Película,4.La bella durmiente,1
+¿Cómo se llama el perro de Tintín?, 1.Malo, 2.Malten, 3.Milú,4.Balú,3
+¿Qué actriz protagonizó "Desayuno con diamantes?, 1.Patricia Neal, 2.Audrey Hepburn, 3.Beverly Powers,4.Janet Banzet,2
+¿Qué año se emitió el primer programa de OT?, 1.2001, 2.2000, 3.2002,4.1999,1
+¿Cómo se llamaba el cantante de Queen?, 1.Roger Taylor, 2.John Deacon, 3.Brian May, 4.Freddie Mercury,4
+¿Qué película hizo famoso al director James Cameron?, 1.Desayuno con diamantes, 2.Titanic, 3.Mary Poppins,4.Avengers. Endgame,2
+¿Cuántos álbumes de estudio publicó Michael Jackson en vida?, 1.16, 2.18, 3.11,4.7,3

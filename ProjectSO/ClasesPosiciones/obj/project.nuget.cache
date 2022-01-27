@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "xHPVBSitOjOqV1/kaMN51PP+v3MO8M+GjqvZEqf5DZ/sqzQMAzw4sp6hBIxVQcmgingpfsU2NBdtoPeQaSLvNA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\julia\\OneDrive\\Escriptori\\SO_final\\TrivialGame_Group6\\ProjectSO\\ClasesPosiciones\\ClasesPosiciones.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\julia\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\julia\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

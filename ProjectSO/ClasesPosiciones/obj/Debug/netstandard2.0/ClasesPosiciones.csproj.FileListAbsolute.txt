@@ -1,0 +1,36 @@
+C:\Users\paula\Desktop\SO BABE\TrivialGame_Group6\ProjectSO\ClasesPosiciones\bin\Debug\netstandard2.0\ClasesPosiciones.deps.json
+C:\Users\paula\Desktop\SO BABE\TrivialGame_Group6\ProjectSO\ClasesPosiciones\bin\Debug\netstandard2.0\ClasesPosiciones.dll
+C:\Users\paula\Desktop\SO BABE\TrivialGame_Group6\ProjectSO\ClasesPosiciones\bin\Debug\netstandard2.0\ClasesPosiciones.pdb
+C:\Users\paula\Desktop\SO BABE\TrivialGame_Group6\ProjectSO\ClasesPosiciones\obj\Debug\netstandard2.0\ClasesPosiciones.csprojAssemblyReference.cache
+C:\Users\paula\Desktop\SO BABE\TrivialGame_Group6\ProjectSO\ClasesPosiciones\obj\Debug\netstandard2.0\ClasesPosiciones.AssemblyInfoInputs.cache
+C:\Users\paula\Desktop\SO BABE\TrivialGame_Group6\ProjectSO\ClasesPosiciones\obj\Debug\netstandard2.0\ClasesPosiciones.AssemblyInfo.cs
+C:\Users\paula\Desktop\SO BABE\TrivialGame_Group6\ProjectSO\ClasesPosiciones\obj\Debug\netstandard2.0\ClasesPosiciones.csproj.CoreCompileInputs.cache
+C:\Users\paula\Desktop\SO BABE\TrivialGame_Group6\ProjectSO\ClasesPosiciones\obj\Debug\netstandard2.0\ClasesPosiciones.dll
+C:\Users\paula\Desktop\SO BABE\TrivialGame_Group6\ProjectSO\ClasesPosiciones\obj\Debug\netstandard2.0\ClasesPosiciones.pdb
+C:\Users\julia\OneDrive\Escriptori\SO BABE\TrivialGame_Group6\ProjectSO\ClasesPosiciones\bin\Debug\netstandard2.0\ClasesPosiciones.deps.json
+C:\Users\julia\OneDrive\Escriptori\SO BABE\TrivialGame_Group6\ProjectSO\ClasesPosiciones\bin\Debug\netstandard2.0\ClasesPosiciones.dll
+C:\Users\julia\OneDrive\Escriptori\SO BABE\TrivialGame_Group6\ProjectSO\ClasesPosiciones\bin\Debug\netstandard2.0\ClasesPosiciones.pdb
+C:\Users\julia\OneDrive\Escriptori\SO BABE\TrivialGame_Group6\ProjectSO\ClasesPosiciones\obj\Debug\netstandard2.0\ClasesPosiciones.csprojAssemblyReference.cache
+C:\Users\julia\OneDrive\Escriptori\SO BABE\TrivialGame_Group6\ProjectSO\ClasesPosiciones\obj\Debug\netstandard2.0\ClasesPosiciones.AssemblyInfoInputs.cache
+C:\Users\julia\OneDrive\Escriptori\SO BABE\TrivialGame_Group6\ProjectSO\ClasesPosiciones\obj\Debug\netstandard2.0\ClasesPosiciones.AssemblyInfo.cs
+C:\Users\julia\OneDrive\Escriptori\SO BABE\TrivialGame_Group6\ProjectSO\ClasesPosiciones\obj\Debug\netstandard2.0\ClasesPosiciones.csproj.CoreCompileInputs.cache
+C:\Users\julia\OneDrive\Escriptori\SO BABE\TrivialGame_Group6\ProjectSO\ClasesPosiciones\obj\Debug\netstandard2.0\ClasesPosiciones.dll
+C:\Users\julia\OneDrive\Escriptori\SO BABE\TrivialGame_Group6\ProjectSO\ClasesPosiciones\obj\Debug\netstandard2.0\ClasesPosiciones.pdb
+C:\Users\paula\Desktop\TrivialGame_Group6\ProjectSO\ClasesPosiciones\bin\Debug\netstandard2.0\ClasesPosiciones.deps.json
+C:\Users\paula\Desktop\TrivialGame_Group6\ProjectSO\ClasesPosiciones\bin\Debug\netstandard2.0\ClasesPosiciones.dll
+C:\Users\paula\Desktop\TrivialGame_Group6\ProjectSO\ClasesPosiciones\bin\Debug\netstandard2.0\ClasesPosiciones.pdb
+C:\Users\paula\Desktop\TrivialGame_Group6\ProjectSO\ClasesPosiciones\obj\Debug\netstandard2.0\ClasesPosiciones.csprojAssemblyReference.cache
+C:\Users\paula\Desktop\TrivialGame_Group6\ProjectSO\ClasesPosiciones\obj\Debug\netstandard2.0\ClasesPosiciones.AssemblyInfoInputs.cache
+C:\Users\paula\Desktop\TrivialGame_Group6\ProjectSO\ClasesPosiciones\obj\Debug\netstandard2.0\ClasesPosiciones.AssemblyInfo.cs
+C:\Users\paula\Desktop\TrivialGame_Group6\ProjectSO\ClasesPosiciones\obj\Debug\netstandard2.0\ClasesPosiciones.csproj.CoreCompileInputs.cache
+C:\Users\paula\Desktop\TrivialGame_Group6\ProjectSO\ClasesPosiciones\obj\Debug\netstandard2.0\ClasesPosiciones.dll
+C:\Users\paula\Desktop\TrivialGame_Group6\ProjectSO\ClasesPosiciones\obj\Debug\netstandard2.0\ClasesPosiciones.pdb
+C:\Users\julia\OneDrive\Escriptori\SO_final\TrivialGame_Group6\ProjectSO\ClasesPosiciones\bin\Debug\netstandard2.0\ClasesPosiciones.deps.json
+C:\Users\julia\OneDrive\Escriptori\SO_final\TrivialGame_Group6\ProjectSO\ClasesPosiciones\bin\Debug\netstandard2.0\ClasesPosiciones.dll
+C:\Users\julia\OneDrive\Escriptori\SO_final\TrivialGame_Group6\ProjectSO\ClasesPosiciones\bin\Debug\netstandard2.0\ClasesPosiciones.pdb
+C:\Users\julia\OneDrive\Escriptori\SO_final\TrivialGame_Group6\ProjectSO\ClasesPosiciones\obj\Debug\netstandard2.0\ClasesPosiciones.csprojAssemblyReference.cache
+C:\Users\julia\OneDrive\Escriptori\SO_final\TrivialGame_Group6\ProjectSO\ClasesPosiciones\obj\Debug\netstandard2.0\ClasesPosiciones.AssemblyInfoInputs.cache
+C:\Users\julia\OneDrive\Escriptori\SO_final\TrivialGame_Group6\ProjectSO\ClasesPosiciones\obj\Debug\netstandard2.0\ClasesPosiciones.AssemblyInfo.cs
+C:\Users\julia\OneDrive\Escriptori\SO_final\TrivialGame_Group6\ProjectSO\ClasesPosiciones\obj\Debug\netstandard2.0\ClasesPosiciones.csproj.CoreCompileInputs.cache
+C:\Users\julia\OneDrive\Escriptori\SO_final\TrivialGame_Group6\ProjectSO\ClasesPosiciones\obj\Debug\netstandard2.0\ClasesPosiciones.dll
+C:\Users\julia\OneDrive\Escriptori\SO_final\TrivialGame_Group6\ProjectSO\ClasesPosiciones\obj\Debug\netstandard2.0\ClasesPosiciones.pdb

@@ -1,0 +1,7 @@
+¿Cuál es la capital de Filipinas?, 1.Guadalajara, 2.Manila, 3.Ciudad de Filipinas,4.Buenos Aires,2
+¿Cuál es el rio más caudaloso del mundo?, 1.Ebro, 2.Nilo, 3.Amazonas,4.Mississipi,3
+¿En qué país se encuentra el rio Po?, 1.Francia, 2.Alemania, 3.Austria,4.Italia,4
+¿Cuanto mide la montaña "El monte Eibrús"(en metros)?, 1. 5462, 2. 4651, 3. 6789,4. 3412,1
+¿A qué país pertenece la isla de Creta, 1.Eslovaquia, 2.Croacia, 3.Noruega,4.Grecia,4
+¿Cuál es el país más visitado del mundo?, 1.Francia, 2.España, 3.EEUU,4.China,1
+¿Por cuántos estados está formado EEUU?', 1. 56, 2. 53, 3. 52,4. 50,4

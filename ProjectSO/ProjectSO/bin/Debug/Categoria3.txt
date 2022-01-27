@@ -1,0 +1,7 @@
+¿Quién pintó el Guernica?, 1.Pablo Picasso, 2.Salvador Dalí, 3.Claude Monet,4.Leonardo da Vinci,1
+¿Qué tipo de instrumento es una cítara?, 1.Viento, 2.Cuerda, 3.Percusión,4.No es un instrumento,2
+¿Qué filósofo creó "El mito de la caverna"?, 1.Descartes, 2.Nietzsche, 3.Platón,4.Sócrates,3
+¿Cómo se llama el caballo de Don Quijote de la Mancha?, 1.Rocinante, 2.Rocío, 3.Ron,4.Rostrante,1
+¿Quién escribió "Sueño de una noche de verano?, 1.Virginia Woolf, 2.E.M. Hemingway, 3.Charles Dickens,4.William Shakespeare,4
+¿Qué tiene en Segovia 128 arcos?, 1.La catedral de Segovia, 2.El acueducto de Segovia, 3.Iglesia de Segovia,4.El puente principal de Segovia,2
+¿Qué poeta escribió el poema “Oda a Afrodita”?, 1.Safo de Mitilene, 2.Pablo Neruda, 3.Federico García Lorca,4.Mario Benedetti,1
